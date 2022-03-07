@@ -1,0 +1,5 @@
+# Junk files
+*.bak
+*.swp
+*~
+.DS_Store
