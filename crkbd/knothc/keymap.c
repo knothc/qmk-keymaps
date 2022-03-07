@@ -55,43 +55,52 @@ enum custom_keycodes {
 #define ENT_LOW LT(_LOWER, KC_ENT)
 #define BSPC_LOW LT(_LOWER, KC_BSPC)
 
+#define A_NAV LT(_NAV, KC_A)
+
 // one-shot-key definitions
 #define OSK_CA OSM(MOD_LCTL|MOD_LALT)  // I use this combinations with BetterTouchTool shorcuts to jump/open a specific application
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QWERTY] = LAYOUT_split_3x6_3(
-  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-       KC_ESC,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                         KC_Y,    KC_U,    KC_I,    KC_O,   KC_P,  KC_BSPC,
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      TAB_NAV,   HRM_A,   HRM_S,   HRM_D,   HRM_F,    KC_G,                         KC_H,   HRM_J,   HRM_K,   HRM_L,HRM_SCLN, ES_QUOT,
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_RSFT,
-  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_LALT, KC_LGUI, ENT_LOW,    SPC_HIG,MO(_NAV),  OSK_CA
-                                      //`--------------------------'  `--------------------------'
+  //,-----------------------------------------------------.                      ,------------------------------------------------------.
+      XXXXXXX,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                            KC_Y,    KC_U,    KC_I,    KC_O,   KC_P,  XXXXXXX,
+  //|--------+--------+--------+--------+--------+--------|                      |---------+--------+--------+--------+--------+--------|
+      XXXXXXX,   A_NAV,   HRM_S,   HRM_D,   HRM_F,    KC_G,                            KC_H,   HRM_J,   HRM_K,   HRM_L, ES_QUOT, XXXXXXX,
+  //|--------+--------+--------+--------+--------+--------|                      |---------+--------+--------+--------+--------+--------|
+      XXXXXXX,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                            KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, XXXXXXX,
+  //|--------+--------+--------+--------+--------+--------+-----------|  |-------+---------+--------+--------+--------+--------+--------|
+                                          KC_LGUI, KC_LSFT, MO(_LOWER),   SPC_HIG, MO(_NAV),  OSK_CA
+                                      //`-----------------------------'  `--------------------------'
 
   ),
+
+  // TODO:
+  // - shift (thumb cluster?)
+  // - '´''''''''''
+KJKJKJKJKJKJKIIL
 
   [_LOWER] = LAYOUT_split_3x6_3(
-  //,-------------------------------------------------------.                    ,-----------------------------------------------------.
-      XXXXXXX,   ES_AT,   XXXXXXX, XXXXXXX,  ES_EQL, ES_PLUS,                      ES_PIPE, ES_LCBR, ES_RCBR,  ES_EQL, XXXXXXX,  KC_DEL,
-  //|--------+--------+----------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      XXXXXXX, ES_EXLM,   ES_DQUO, ES_HASH,  ES_DLR, ES_PERC,                      ES_AMPR, ES_LPRN, ES_RPRN, ES_SLSH, ES_QUES, KC_QUOT,
-  //|--------+--------+----------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      XXXXXXX, ES_LABK,S(ES_LABK), XXXXXXX, ES_ASTR, ES_MINS,                       ES_NOT, ES_LBRC, ES_RBRC, XXXXXXX, XXXXXXX, KC_TILD,
-  //|--------+--------+----------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                            _______, _______, _______,    _______, _______, _______
-                                        //`--------------------------'  `--------------------------'
+  //,---------------------------------------------------------.                    ,-----------------------------------------------------.
+      XXXXXXX,  KC_ESC, KC_QUOT,    ES_QUOT,  ES_TILD, ES_PLUS,                      ES_PIPE, ES_LCBR, ES_RCBR,  ES_EQL, KC_BSPC, XXXXXXX,
+  //|--------+--------+--------+-----------+---------+--------|                    |--------+--------+--------+--------+--------+--------|
+      XXXXXXX,  KC_TAB, ES_DQUO,    ES_HASH,   ES_DLR, ES_PERC,                      ES_AMPR, ES_LPRN, ES_RPRN, ES_SLSH,  KC_ENT, XXXXXXX,
+  //|--------+--------+--------+-----------+---------+--------|                    |--------+--------+--------+--------+--------+--------|
+      XXXXXXX,   ES_AT, ES_LABK, S(ES_LABK),  ES_ASTR, ES_MINS,                       ES_NOT, ES_LBRC, ES_RBRC, ES_EXLM, ES_QUES, XXXXXXX,
+  //|--------+--------+--------+-----------+---------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
+                                              _______, _______, _______,    _______, _______, _______
+                                          //`--------------------------'  `--------------------------'
   ),
+
+
 
   [_RAISE] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      XXXXXXX, XXXXXXX, KC_MPRV, KC_MPLY, KC_MNXT, XXXXXXX,                      XXXXXXX, KC_VOLD, KC_VOLU, KC_MUTE, XXXXXXX,  KC_DEL,
+      XXXXXXX, XXXXXXX, KC_MPRV, KC_MPLY, KC_MNXT, XXXXXXX,                      XXXXXXX, KC_VOLD, KC_VOLU, KC_MUTE,  KC_DEL, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       XXXXXXX,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                         KC_6,    KC_7,    KC_8,    KC_9,    KC_0, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      ES_NTIL, XXXXXXX, XXXXXXX, ES_IEXL, ES_IQUE, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           _______, _______, _______,    _______, _______, _______
                                       //`--------------------------'  `--------------------------'
