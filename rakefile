@@ -1,3 +1,4 @@
+# Based on noahfrederick's rakefile: https://github.com/noahfrederick/qmk-keymaps/blob/master/Rakefile
 
 require 'fileutils'
 
