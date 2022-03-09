@@ -48,6 +48,14 @@ enum layers {
 #define HRM_L    CTL_T(KC_L)
 #define HRM_SCLN LSFT_T(KC_SCLN)
 
+// Layer Tap definitons
+#define ENT_HIG LT(_RAISE, KC_ENT)
+#define SPC_HIG LT(_RAISE, KC_SPC)
+#define TAB_NAV LT(_NAV, KC_TAB)
+#define ENT_NAV LT(_NAV, KC_ENT)
+#define ENT_LOW LT(_LOWER, KC_ENT)
+#define BSPC_LOW LT(_LOWER, KC_BSPC)
+
 // Macro Declarations
 enum custom_keycodes {
   FWD_DEL_WORD = SAFE_RANGE,
@@ -71,10 +79,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      *                        `----------------------------------'  `-----------------------------------'
      */
     [_QWERTY] = LAYOUT(
-      LT(_RAISE, KC_ESC), KC_Q,  KC_W,     KC_E,    KC_R,    KC_T,                                                                            KC_Y,     KC_U,     KC_I,    KC_O,   KC_P,     KC_BSPC,
-      LT(_NAV, KC_TAB),   HRM_A, HRM_S,    HRM_D,   HRM_F,   KC_G,                                                                            KC_H,     HRM_J,    HRM_K,   HRM_L,  HRM_SCLN, ES_QUOT,
-      KC_LSFT,            KC_Z,  KC_X,     KC_C,    KC_V,    KC_B, LCTL(KC_SPC),  OSK_JUMP,           KC_LSFT,            OSK_JUMP,  KC_N,    KC_M,     KC_COMM, KC_DOT, KC_SLSH,  KC_RSFT,
-                                 KC_LCTRL, KC_LALT, KC_LGUI,       LT(_LOWER, KC_BSPC), KC_ENT,       LT(_LOWER, KC_ENT), LT(_RAISE, KC_SPC), KC_ENT,   MO(_NAV), KC_RALT
+      KC_ESC,  KC_Q,  KC_W,   KC_E,     KC_R,    KC_T,                                                  KC_Y,    KC_U,     KC_I,    KC_O,   KC_P,     KC_BSPC,
+      TAB_NAV, HRM_A, HRM_S,  HRM_D,    HRM_F,   KC_G,                                                  KC_H,    HRM_J,    HRM_K,   HRM_L,  HRM_SCLN, ES_QUOT,
+      KC_LSFT, KC_Z,  KC_X,   KC_C,     KC_V,    KC_B,    XXXXXXX,  OSK_JUMP,      OSK_JUMP,  XXXXXXX,  KC_N,    KC_M,     KC_COMM, KC_DOT, KC_SLSH,  KC_RSFT,
+                              KC_LCTRL, KC_LALT, KC_LGUI, ENT_LOW,  KC_ENT,        ENT_LOW,   SPC_HIG,  KC_ENT,  MO(_NAV), KC_RALT
     ),
 
 
