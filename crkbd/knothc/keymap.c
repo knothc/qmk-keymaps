@@ -75,7 +75,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_LOWER] = LAYOUT_split_3x6_3(
   //,-------------------------------------------------------.                    ,-----------------------------------------------------.
-      XXXXXXX,   ES_AT,   XXXXXXX, XXXXXXX,  ES_EQL, ES_PLUS,                      ES_PIPE, ES_LCBR, ES_RCBR,  ES_EQL, XXXXXXX,  KC_DEL,
+      XXXXXXX,   ES_AT,   XXXXXXX, XXXXXXX,  ES_EQL, ES_PLUS,                      ES_PIPE, ES_LCBR, ES_RCBR,  ES_EQL, KC_LBRC,  KC_DEL,
   //|--------+--------+----------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       XXXXXXX, ES_EXLM,   ES_DQUO, ES_HASH,  ES_DLR, ES_PERC,                      ES_AMPR, ES_LPRN, ES_RPRN, ES_SLSH, ES_QUES, KC_QUOT,
   //|--------+--------+----------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
