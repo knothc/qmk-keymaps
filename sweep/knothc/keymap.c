@@ -3,21 +3,6 @@
 #include "keymap_spanish.h"
 #include <stdio.h>
 
-// Layer definition
-enum layers {
-    _QWERTY = 0,
-    _LOWER,
-    _NAV,
-    _RAISE,
-    _ADJUST
-};
-
-// Macro Declarations
-enum custom_keycodes {
-  FWD_DEL_WORD = SAFE_RANGE,
-  BCK_DEL_WORD
-};
-
 // Left-hand home row mods
 #define HRM_A  LSFT_T(KC_A)
 #define HRM_S  CTL_T(KC_S)
@@ -42,8 +27,28 @@ enum custom_keycodes {
 // one-shot-key definitions
 #define OSK_CA OSM(MOD_LCTL|MOD_LALT)  // I use this combinations with BetterTouchTool shorcuts to jump/open a specific application
 
+
+// Layer definition
+enum layers {
+    _QWERTY = 0,
+    _LOWER,
+    _NAV,
+    _RAISE,
+    _ADJUST
+};
+
+// Macro Declarations
+enum custom_keycodes {
+  FWD_DEL_WORD = SAFE_RANGE,
+  BCK_DEL_WORD
+};
+
+enum sweep_tap_dances {
+  TD_Q_ESC
+};
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-  [_QWERTY] = LAYOUT_split_3x5_2(
+  [_QWERTY] = LAYOUT(
   //,--------------------------------------------.    ,----------------------------------------------.
       KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,         KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,
   //|--------+--------+--------+--------+--------|    |--------+--------+--------+--------+----------|
@@ -56,7 +61,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   ),
 
-  [_LOWER] = LAYOUT_split_3x5_2(
+  [_LOWER] = LAYOUT(
   //,-----------------------------------------------.    ,--------------------------------------------.
       ES_AT,   XXXXXXX,    XXXXXXX, ES_EQL,  ES_PLUS,     ES_PIPE,  ES_LCBR, ES_RCBR, ES_EQL,  KC_LBRC,
   //|--------+-----------+--------+--------+--------|    |--------+--------+--------+--------+--------|
@@ -64,12 +69,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+-----------+--------+--------+--------|    |--------+--------+--------+--------+--------|
       ES_LABK, S(ES_LABK), XXXXXXX, ES_ASTR, ES_MINS,     ES_NOT,   ES_LBRC, ES_RBRC, XXXXXXX, XXXXXXX,
   //|--------+-----------+--------+--------+--------|    |--------+--------+--------+--------+--------|
-                                    _______,  _______,    _______,  _______
+                                   _______,  _______,    _______,  _______
                                 //`--------+--------'    `--------+---------'
   ),
 
 
-  [_RAISE] = LAYOUT_split_3x5_2(
+  [_RAISE] = LAYOUT(
   //,--------------------------------------------.    ,-------------------------------------------------.
       XXXXXXX, KC_MPRV, KC_MPLY, KC_MNXT, XXXXXXX,      XXXXXXX, KC_VOLD,      KC_VOLU, KC_MUTE, XXXXXXX,
   //|--------+--------+--------+--------+--------|    |--------+-------------+--------+--------+---------|
@@ -77,12 +82,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------|    |--------+-------------+--------+--------+---------|
       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,      XXXXXXX, RCTL(KC_SPC), XXXXXXX, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------|    |--------+-------------+--------+--------+---------|
-                                 _______,  _______,     _______,  _______
+                                _______,  _______,     _______,  _______
                              //`--------+--------'    `--------+---------'
   ),
 
 
-  [_NAV] = LAYOUT_split_3x5_2(
+  [_NAV] = LAYOUT(
   //,----------------------------------------------------------.    ,----------------------------------------------------------.
       XXXXXXX, XXXXXXX, BCK_DEL_WORD,  FWD_DEL_WORD,   XXXXXXX,      XXXXXXX, LCMD(KC_LEFT), KC_UP,    LCMD(KC_RIGHT), KC_HOME,
   //|--------+--------+------------ -+---------------+---------|    |--------+-------------+---------+---------------+---------|
@@ -95,7 +100,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 
 
-  [_ADJUST] = LAYOUT_split_3x5_2(
+  [_ADJUST] = LAYOUT(
   //,--------------------------------------------.    ,--------------------------------------------.
       KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,       KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,
   //|--------+--------+--------+--------+--------|    |--------+--------+--------+--------+--------|
@@ -111,4 +116,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 layer_state_t layer_state_set_user(layer_state_t state) {
     return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
-}
+};
+
+qk_tap_dance_action_t tap_dance_actions[] = {
+  // Once for Q, twice for ESC
+  [TD_Q_ESC] = ACTION_TAP_DANCE_DOUBLE(KC_Q, KC_ESC),
+};
