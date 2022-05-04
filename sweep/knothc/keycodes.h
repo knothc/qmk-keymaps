@@ -6,9 +6,9 @@
 #include "oneshot.h"
 
 // Layer keys
-#define NUM OSL(_NUM)
-#define SYM OSL(_SYM)
-#define WNAV MO(_WNAV) // Workspace navigation and media
+#define NUM OSL(_HIGH)
+#define SYM OSL(_MODS)
+#define WNAV MO(_LOW) // Workspace navigation and media
 //#define FUN MO(_FUN) // Fkeys and mods only
 #define NAV_SPC LT(_NAV, KC_SPC)
 
@@ -35,17 +35,17 @@
 #define W5 HYPR(KC_5)
 #define W6 HYPR(KC_6)
 // to qwerty layer
-#define TG_QWTY TG(_DEF)
+#define TG_QWTY TG(_DEFAULT)
 // awkward symbols to type
 #define GBPD LALT(KC_3) // UK pound sign
 #define PMIN LALT(KC_PLUS) // plus/minus symbol
 
 enum layers {
-	_DEF,
-	_NUM,
-	_SYM,
+	_DEFAULT,
+	_HIGH,
+	_MODS,
 	_NAV,
-	_WNAV,
+	_LOW,
 	_FUN,
 };
 

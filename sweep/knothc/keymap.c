@@ -13,10 +13,10 @@
 #define SHFT_SLSH RSFT_T(KC_SLSH)
 #define ALFRED    RCTL(KC_SPC)
 
-#define ML_LO   LT(_WNAV, KC_TAB)
+#define ML_LO   LT(_LOW, KC_TAB)
 
 #define KCA_NAV LT(_NAV, KC_A)
-#define HI_SPC  LT(_NUM, KC_SPC)
+#define HI_SPC  LT(_HIGH, KC_SPC)
 
 #define LWORD  A(KC_LEFT)
 #define RWORD  A(KC_RIGHT)
@@ -41,27 +41,26 @@
 #define HRM_SCLN LSFT_T(KC_SCLN)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-	[_DEF] = LAYOUT_split_3x5_2(
+	[_DEFAULT] = LAYOUT_split_3x5_2(
 		KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,            KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,
 		KCA_NAV, KC_S,    KC_D,    KC_F,    KC_G,            KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN,
 		SHFT_Z,  KC_X,    KC_C,    KC_V,    KC_B,            KC_N,    KC_M,    KC_COMM, KC_DOT,  SHFT_SLSH,
 															 KC_LGUI, ML_LO,           HI_SPC,  SYM
   ),
 
-	[_NUM] = LAYOUT_split_3x5_2(  // "RAISE"
+	[_HIGH] = LAYOUT_split_3x5_2(  // "RAISE"
 		KC_ESC, KC_MPRV, KC_MPLY, KC_MNXT, XXXXXXX,       KC_VOLU, KC_7, KC_8, KC_9, KC_DEL,
 		KC_TAB, ALFRED,  OSM_ACG, OSM_AC,  XXXXXXX,       KC_VOLD, KC_4, KC_5, KC_6, KC_0,
 		QTERM,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,       KC_MUTE, KC_1, KC_2, KC_3, XXXXXXX,
 															_______, _______,       _______,  _______
   ),
 
-	[_SYM] = LAYOUT_split_3x5_2( // ONE SHOT MODS
+	[_MODS] = LAYOUT_split_3x5_2( // ONE SHOT MODS
 			XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
 			OS_SHFT, OS_CTRL, OS_ALT,  OS_CMD,  XXXXXXX,     XXXXXXX, OS_CMD,  OS_ALT,  OS_CTRL, OS_SHFT,
 			XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
 			                           KC_TRNS, KC_TRNS,     KC_TRNS, KC_TRNS
   ),
-
 
 	[_NAV] = LAYOUT_split_3x5_2( // NAVIGATION
 		XXXXXXX, XXXXXXX, BCK_DEL_WORD, FWD_DEL_WORD, XXXXXXX,      XXXXXXX, LLINE,   KC_UP,   RLINE,    KC_HOME,
@@ -70,21 +69,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 																		_______,      _______,       _______, _______
   ),
 
-	[_WNAV] = LAYOUT_split_3x5_2(  // "LOWER"
+	[_LOW] = LAYOUT_split_3x5_2(  // "LOWER"
   	SW_APP,  ES_QUOT,  KC_LBRC,    KC_QUOT, ES_PLUS,     ES_PIPE,  ES_LCBR, ES_RCBR, ES_EQL,  KC_BSPC,
   	KC_TAB,  ES_DQUO,  ES_HASH,    ES_DLR,  ES_PERC,     ES_AMPR,  ES_LPRN, ES_RPRN, ES_SLSH, KC_ENT,
   	ES_AT,   KC_GRV,   S(KC_GRV),  ES_ASTR, ES_MINS,     ES_NOT,   ES_LBRC, ES_RBRC, ES_EXLM, ES_QUES,
   																_______,  _______,    _______,  _______
   ),
 
-  //	[_WNAV] = LAYOUT_split_3x5_2(
+  //	[_LOW] = LAYOUT_split_3x5_2(
   //      RESET,    KC_VOLD, KC_MUTE, KC_VOLU, KC_NO,     HOOK,   LHLF,  FULL,  RHLF,  KC_NO,
   //			KC_NO,    KC_NO,   KC_NO,   KC_NO,   KC_NO,     KC_NO,  W4,    W5,    W6,    KC_NO,
   //			TG_QWTY,  KC_MPRV, KC_MPLY, KC_MNXT, KC_NO,     KC_NO,  W1,    W2,    W3,    KC_NO,
   //			                          KC_TRNS,  KC_TRNS,    KC_TRNS,  KC_TRNS
   //								),
 
-	//	[_NUM] = LAYOUT_split_3x5_2(
+	//	[_HIGH] = LAYOUT_split_3x5_2(
   //			KC_NO,   KC_NO,   KC_NO,  KC_NO,    KC_PERC,   KC_PLUS, KC_7, KC_8, KC_9, KC_MINS,
   //			OS_SHFT, OS_CTRL, OS_ALT, OS_CMD,   KC_EQL,    KC_DOT,  KC_4, KC_5, KC_6, KC_COLN,
   //			KC_NO,   KC_NO,   KC_NO,  KC_NO,    KC_UNDS,   KC_ASTR, KC_1, KC_2, KC_3, KC_SLSH,
@@ -255,7 +254,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
 			if (get_oneshot_layer() != 0) {
 				clear_oneshot_layer_state(ONESHOT_OTHER_KEY_PRESSED);
 			}
-			layer_move(_DEF);
+			layer_move(_DEFAULT);
 			return false;
 			break;
 
@@ -280,5 +279,5 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
 }
 
 /* layer_state_t layer_state_set_user(layer_state_t state) { */
-/*     return update_tri_layer_state(state, _LMOD, _RMOD, _NUM); */
+/*     return update_tri_layer_state(state, _LMOD, _RMOD, _HIGH); */
 /* } */
