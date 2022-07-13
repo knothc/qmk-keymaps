@@ -53,12 +53,13 @@ enum layers {
 #define SPC_HIG LT(_RAISE, KC_SPC)
 #define TAB_NAV LT(_NAV, KC_TAB)
 #define ENT_NAV LT(_NAV, KC_ENT)
-#define ENT_LOW LT(_LOWER, KC_ENT)
+#define ML_LO   LT(_LOWER, KC_TAB)
 #define BSPC_LOW LT(_LOWER, KC_BSPC)
 
 // Other - Convenience Shortcuts
 #define GO_BACK G(C(KC_LEFT))
 #define GO_FRWD G(C(KC_RIGHT))
+#define QTERM  C(KC_BSPC)    // Toggle iTerm2
 
 
 // Macro Declarations
@@ -84,10 +85,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      *                        `----------------------------------'  `-----------------------------------'
      */
     [_QWERTY] = LAYOUT(
-      KC_ESC,  KC_Q,  KC_W,   KC_E,     KC_R,    KC_T,                                                  KC_Y,    KC_U,     KC_I,    KC_O,   KC_P,     KC_BSPC,
-      TAB_NAV, HRM_A, HRM_S,  HRM_D,    HRM_F,   KC_G,                                                  KC_H,    HRM_J,    HRM_K,   HRM_L,  HRM_SCLN, ES_QUOT,
-      KC_LSFT, KC_Z,  KC_X,   KC_C,     KC_V,    KC_B,    XXXXXXX,  OSK_JUMP,      OSK_JUMP,  XXXXXXX,  KC_N,    KC_M,     KC_COMM, KC_DOT, KC_SLSH,  KC_RSFT,
-                              KC_LCTRL, KC_LALT, KC_LGUI, ENT_LOW,  KC_ENT,        ENT_LOW,   SPC_HIG,  KC_ENT,  MO(_NAV), KC_RALT
+      KC_ESC,  KC_Q,  KC_W,   KC_E,     KC_R,    KC_T,                                               KC_Y,    KC_U,     KC_I,    KC_O,   KC_P,     KC_BSPC,
+      TAB_NAV, HRM_A, HRM_S,  HRM_D,    HRM_F,   KC_G,                                               KC_H,    HRM_J,    HRM_K,   HRM_L,  HRM_SCLN, ES_QUOT,
+      KC_LSFT, KC_Z,  KC_X,   KC_C,     KC_V,    KC_B,    XXXXXXX, OSK_JUMP,     OSK_JUMP, XXXXXXX,  KC_N,    KC_M,     KC_COMM, KC_DOT, KC_SLSH,  KC_RSFT,
+                              KC_LCTRL, KC_LALT, KC_LGUI, ML_LO,   KC_ENT,       KC_ENT,   SPC_HIG,  KC_ENT,  MO(_NAV), KC_RALT
     ),
 
 
@@ -108,7 +109,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_LOWER] = LAYOUT(
        _______, ES_AT,   _______,    _______, ES_EQL,  ES_PLUS,                                        ES_PIPE, ES_LCBR, ES_RCBR, ES_EQL,  KC_LBRC, KC_DEL,
        _______, ES_EXLM, ES_DQUO,    ES_HASH, ES_DLR,  ES_PERC,                                        ES_AMPR, ES_LPRN, ES_RPRN, ES_SLSH, ES_QUES, KC_QUOT,
-       _______, ES_LABK, S(ES_LABK), _______, ES_ASTR, ES_MINS, _______, _______,    _______, _______, ES_NOT,  ES_LBRC, ES_RBRC, _______, ES_MINS, _______,
+       _______, ES_LABK, S(ES_LABK), _______, ES_ASTR, ES_MINS, _______, _______,    _______, _______, ES_NOT,  ES_LBRC, ES_RBRC, ES_EXLM, ES_QUES, _______,
                                      _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______
      ),
 
@@ -130,7 +131,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_RAISE] = LAYOUT(
       _______, _______, KC_MPRV, KC_MPLY, KC_MNXT, _______,                                        _______, KC_VOLD, KC_VOLU, KC_MUTE, _______, _______,
       _______, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                                           KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______,
-      _______, _______, GO_BACK, _______, GO_FRWD, _______, _______, _______,    _______, _______, _______, _______, _______, _______, _______, _______,
+      _______, QTERM,   GO_BACK, _______, GO_FRWD, _______, _______, _______,    _______, _______, _______, _______, _______, _______, _______, _______,
                                  _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______
     ),
 
