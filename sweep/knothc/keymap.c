@@ -23,6 +23,7 @@
 #define LLINE  G(KC_LEFT)
 #define RLINE  G(KC_RIGHT)
 #define QTERM  C(KC_BSPC)
+#define TMUXP  C(KC_B)
 
 #define OSM_AC  OSM(MOD_LCTL|MOD_LALT)
 #define OSM_ACG OSM(MOD_LCTL|MOD_LALT|MOD_LGUI)
@@ -51,7 +52,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	[_HIGH] = LAYOUT_split_3x5_2(  // "RAISE"
 		KC_ESC, KC_MPRV, KC_MPLY, KC_MNXT, XXXXXXX,       KC_VOLU, KC_7, KC_8, KC_9, KC_DEL,
 		KC_TAB, ALFRED,  OSM_ACG, OSM_AC,  XXXXXXX,       KC_VOLD, KC_4, KC_5, KC_6, KC_0,
-		QTERM,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,       KC_MUTE, KC_1, KC_2, KC_3, XXXXXXX,
+		QTERM,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,       KC_MUTE, KC_1, KC_2, KC_3, TMUXP,
 															_______, _______,       _______,  _______
   ),
 
@@ -135,6 +136,7 @@ const uint16_t PROGMEM del_combo_q[] = {KC_J, KC_L, COMBO_END};
 // Ctrl-c combo mostly for Emacs
 const uint16_t PROGMEM ctrlc_combo_q[] = {KC_J, KC_K, KC_L, COMBO_END};  // TODO: Update to something useful
 const uint16_t PROGMEM esc_combo_q[] = {KC_F, KC_D, KC_S, COMBO_END};
+
 // beakl combos // TODO: Remove BEAKL related combos
 const uint16_t PROGMEM caps_combo_b[] = {KC_A, KC_S, COMBO_END};
 const uint16_t PROGMEM enter_combo_b[] = {KC_S, KC_T, COMBO_END};
