@@ -131,7 +131,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_RAISE] = LAYOUT(
       _______, _______, KC_MPRV, KC_MPLY, KC_MNXT, _______,                                        _______, KC_VOLD, KC_VOLU, KC_MUTE, _______, _______,
       _______, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                                           KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______,
-      _______, QTERM,   GO_BACK, _______, GO_FRWD, _______, _______, _______,    _______, _______, _______, _______, _______, _______, _______, _______,
+      _______, QTERM,   _______, _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______, _______, _______, _______,
                                  _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______
     ),
 
@@ -154,10 +154,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     *                        `----------------------------------'  `----------------------------------'
     */
     [_NAV] = LAYOUT(
-      _______, _______, _______,    BCK_DEL_WORD,  FWD_DEL_WORD,   _______,                                _______, LCMD(KC_LEFT), KC_UP,   LCMD(KC_RIGHT), KC_HOME, KC_DEL,
-      _______, KC_LSFT, KC_LSFT,    LALT(KC_LEFT), LALT(KC_RIGHT), _______,                                _______, KC_LEFT,       KC_DOWN, KC_RIGHT,       KC_END,  _______,
-      _______, _______, LCMD(KC_X), LCMD(KC_C),    LCMD(KC_V),     _______, _______, _______,     _______, _______, _______, _______, _______, _______, _______, _______,
-                                                 _______, _______, _______, _______, _______,     _______, _______, _______, _______, _______
+      _______, _______, _______,    BCK_DEL_WORD,  FWD_DEL_WORD,   _______,                                         _______, LCMD(KC_LEFT), KC_UP,   LCMD(KC_RIGHT), KC_HOME, KC_DEL,
+      _______, KC_LSFT, KC_LSFT,    LALT(KC_LEFT), LALT(KC_RIGHT), _______,                                         _______, KC_LEFT,       KC_DOWN, KC_RIGHT,       KC_END,  _______,
+      _______, _______, LCMD(KC_X), LCMD(KC_C),    LCMD(KC_V),     _______, _______, _______,     _______, _______, _______, GO_BACK,       _______, GO_FRWD,        _______, _______,
+                                                 _______, _______, _______, _______, _______,     _______, _______, _______,       _______, _______
     ),
 
 
@@ -352,4 +352,5 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
     }
     return true;
 }
+
 #endif
