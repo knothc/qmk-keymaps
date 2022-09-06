@@ -53,7 +53,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		KC_ESC, KC_MPRV, KC_MPLY, KC_MNXT, XXXXXXX,       KC_VOLU, KC_7, KC_8, KC_9, KC_DEL,
 		KC_TAB, ALFRED,  OSM_ACG, OSM_AC,  XXXXXXX,       KC_VOLD, KC_4, KC_5, KC_6, KC_0,
 		QTERM,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,       KC_MUTE, KC_1, KC_2, KC_3, TMUXP,
-															_______, _______,       _______,  _______
+                                  _______, _______,       _______,  _______
   ),
 
 	[_MODS] = LAYOUT_split_3x5_2( // ONE SHOT MODS
