@@ -41,6 +41,16 @@
 #define HRM_L    CTL_T(KC_L)
 #define HRM_SCLN LSFT_T(KC_SCLN)
 
+#define W_FULL  LCAG(KC_O)
+#define W_NEXT  LCAG(KC_P)
+#define W_LEFT  LCAG(KC_J)
+#define W_RIGHT LCAG(KC_L)
+#define W_UP    LCAG(KC_I)
+#define W_DOWN  LCAG(KC_K)
+
+#define GO_BACK G(C(KC_LEFT))
+#define GO_FRWD G(C(KC_RIGHT))
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	[_DEFAULT] = LAYOUT_split_3x5_2(
 		KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,            KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,
@@ -66,7 +76,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	[_NAV] = LAYOUT_split_3x5_2( // NAVIGATION
 		XXXXXXX, XXXXXXX, BCK_DEL_WORD, FWD_DEL_WORD, XXXXXXX,      XXXXXXX, LLINE,   KC_UP,   RLINE,    KC_HOME,
 		XXXXXXX, KC_LSFT, LWORD,        RWORD,        XXXXXXX,      XXXXXXX, KC_LEFT, KC_DOWN, KC_RIGHT, KC_END,
-		XXXXXXX, XXXXXXX, XXXXXXX,      XXXXXXX,      XXXXXXX,      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,
+		XXXXXXX, XXXXXXX, XXXXXXX,      XXXXXXX,      XXXXXXX,      XXXXXXX, GO_BACK, XXXXXXX, GO_FRWD,  XXXXXXX,
 																		_______,      _______,       _______, _______
   ),
 
@@ -91,12 +101,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //			                        KC_TRNS,    KC_TRNS,   KC_0, FUN
   //  ),
 
-  //	[_FUN] = LAYOUT_split_3x5_2(
-  //			KC_NO,   KC_NO,    KC_NO,    KC_NO,    KC_CAPS,      KC_F12,  KC_F7, KC_F8, KC_F9, KC_NO,
-  //			OS_SHFT, OS_CTRL,  OS_ALT,   OS_CMD,   KC_ESC,       KC_F11,  KC_F4, KC_F5, KC_F6, KC_NO,
-  //			KC_NO,   KC_NO,    KC_NO,    KC_NO,    KC_NO,        KC_F10,  KC_F1, KC_F2, KC_F3, KC_NO,
-  //			                             KC_TRNS,  KC_TRNS,      KC_TRNS, KC_TRNS
-  //  )
+  	[_FUN] = LAYOUT_split_3x5_2(
+  			KC_NO,   KC_NO,    KC_NO,    KC_NO,    KC_NO,        KC_NO,   KC_NO,   W_UP,    W_FULL,  W_NEXT,
+  			KC_NO,   KC_NO,    KC_NO,    KC_NO,    KC_NO,        KC_NO,   W_LEFT,  W_DOWN,  W_RIGHT, KC_NO, 
+  			KC_NO,   KC_NO,    KC_NO,    KC_NO,    KC_NO,        KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO, 
+  			                             KC_TRNS,  KC_TRNS,      KC_TRNS, KC_TRNS
+    ),
 };
 
 enum combo_events {
@@ -280,6 +290,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
 	return true;
 }
 
-/* layer_state_t layer_state_set_user(layer_state_t state) { */
-/*     return update_tri_layer_state(state, _LMOD, _RMOD, _HIGH); */
-/* } */
+layer_state_t layer_state_set_user(layer_state_t state) {
+    return update_tri_layer_state(state, _HIGH, _LOW, _FUN);
+}   
