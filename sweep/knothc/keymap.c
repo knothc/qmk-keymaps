@@ -118,22 +118,6 @@ enum combo_events {
   DEL_COMBO_Q,
   CTRLC_COMBO_Q,
   ESC_COMBO_Q,
-  // beakl layer combos
-  CAPS_COMBO_B,
-  ENTER_COMBO_B,
-  TAB_COMBO_B,
-  BSP_COMBO_B,
-  DEL_COMBO_B,
-  CTRLC_COMBO_B,
-  ESC_COMBO_B,
-  // braces
-  LCBR_COMBO_B,
-  LPRN_COMBO_B,
-  LBRC_COMBO_B,
-  RCBR_COMBO_B,
-  RPRN_COMBO_B,
-  RBRC_COMBO_B,
-  // Other combos...
   COMBO_LENGTH
 };
 uint16_t COMBO_LEN = COMBO_LENGTH;
@@ -147,23 +131,6 @@ const uint16_t PROGMEM del_combo_q[] = {KC_J, KC_L, COMBO_END};
 const uint16_t PROGMEM ctrlc_combo_q[] = {KC_J, KC_K, KC_L, COMBO_END};  // TODO: Update to something useful
 const uint16_t PROGMEM esc_combo_q[] = {KC_F, KC_D, KC_S, COMBO_END};
 
-// beakl combos // TODO: Remove BEAKL related combos
-const uint16_t PROGMEM caps_combo_b[] = {KC_A, KC_S, COMBO_END};
-const uint16_t PROGMEM enter_combo_b[] = {KC_S, KC_T, COMBO_END};
-const uint16_t PROGMEM tab_combo_b[] = {KC_E, KC_A, COMBO_END};
-const uint16_t PROGMEM bsp_combo_b[] = {KC_I, KC_A, COMBO_END};
-const uint16_t PROGMEM del_combo_b[] = {KC_S, KC_N, COMBO_END};
-// braces - vertical combos 				// TODO: Remove?
-const uint16_t PROGMEM lcbr_combo_b[] = {KC_O, KC_E, COMBO_END};
-const uint16_t PROGMEM lprn_combo_b[] = {KC_U, KC_A, COMBO_END};
-const uint16_t PROGMEM lbrc_combo_b[] = {KC_X, KC_DOT, COMBO_END};
-const uint16_t PROGMEM rcbr_combo_b[] = {KC_M, KC_T, COMBO_END};
-const uint16_t PROGMEM rprn_combo_b[] = {KC_C, KC_S, COMBO_END};
-const uint16_t PROGMEM rbrc_combo_b[] = {KC_G, KC_D, COMBO_END};
-// Ctrl-c combo mostly for Emacsaz444
-const uint16_t PROGMEM ctrlc_combo_b[] = {KC_S, KC_T, KC_N, COMBO_END};
-const uint16_t PROGMEM esc_combo_b[] = {KC_I, KC_E, KC_A, COMBO_END};
-
 combo_t key_combos[] = {
   [CAPS_COMBO_Q] = COMBO_ACTION(caps_combo_q),
   [ENTER_COMBO_Q] = COMBO(enter_combo_q, KC_ENT),
@@ -172,26 +139,11 @@ combo_t key_combos[] = {
   [DEL_COMBO_Q] = COMBO(del_combo_q, KC_DEL),
   [CTRLC_COMBO_Q] = COMBO(ctrlc_combo_q, LCTL(KC_C)),   // TODO: Update to something useful
   [ESC_COMBO_Q] = COMBO(esc_combo_q, KC_ESC),
-  // Other combos...
-  [CAPS_COMBO_B] = COMBO_ACTION(caps_combo_b),
-  [ENTER_COMBO_B] = COMBO(enter_combo_b, KC_ENT),
-  [TAB_COMBO_B] = COMBO(tab_combo_b, KC_TAB),
-  [BSP_COMBO_B] = COMBO(bsp_combo_b, KC_BSPC),
-  [DEL_COMBO_B] = COMBO(del_combo_b, KC_DEL),
-  [CTRLC_COMBO_B] = COMBO(ctrlc_combo_b, LCTL(KC_C)),
-  [ESC_COMBO_B] = COMBO(esc_combo_b, KC_ESC),
-  [LCBR_COMBO_B] = COMBO(lcbr_combo_b, KC_LCBR),
-  [LPRN_COMBO_B] = COMBO(lprn_combo_b, KC_LPRN),
-  [LBRC_COMBO_B] = COMBO(lbrc_combo_b, KC_LBRC),
-  [RCBR_COMBO_B] = COMBO(rcbr_combo_b, KC_RCBR),
-  [RPRN_COMBO_B] = COMBO(rprn_combo_b, KC_RPRN),
-  [RBRC_COMBO_B] = COMBO(rbrc_combo_b, KC_RBRC),
 };
 
 void process_combo_event(uint16_t combo_index, bool pressed) {
   switch(combo_index) {
     case CAPS_COMBO_Q:
-    case CAPS_COMBO_B:
       if (pressed) {
         caps_word_set(true);  // Activate Caps Word!
       }
