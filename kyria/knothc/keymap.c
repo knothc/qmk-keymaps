@@ -50,17 +50,18 @@ enum layers {
 #define HRM_SCLN LSFT_T(KC_SCLN)
 
 // Layer Tap definitons
-#define ENT_HIG LT(_RAISE, KC_ENT)
-#define SPC_HIG LT(_RAISE, KC_SPC)
-#define TAB_NAV LT(_NAV, KC_TAB)
-#define ENT_NAV LT(_NAV, KC_ENT)
-#define ML_LO   LT(_LOWER, KC_TAB)
+#define ENT_HIG  LT(_RAISE, KC_ENT)
+#define SPC_HIG  LT(_RAISE, KC_SPC)
+#define TAB_NAV  LT(_NAV, KC_TAB)
+#define ENT_NAV  LT(_NAV, KC_ENT)
+#define ML_LO    LT(_LOWER, KC_TAB)
 #define BSPC_LOW LT(_LOWER, KC_BSPC)
+#define CTRL_HIG LM(_RAISE, MOD_LCTL)
 
 // Other - Convenience Shortcuts
 #define GO_BACK G(C(KC_LEFT))
 #define GO_FRWD G(C(KC_RIGHT))
-#define QTERM  C(KC_BSPC)    // Toggle iTerm2
+#define QTERM   C(KC_BSPC)    // Toggle iTerm2
 
 
 // Macro Declarations
@@ -86,10 +87,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      *                        `----------------------------------'  `-----------------------------------'
      */
     [_QWERTY] = LAYOUT(
-      KC_ESC,  KC_Q,  KC_W,   KC_E,     KC_R,    KC_T,                                               KC_Y,    KC_U,     KC_I,    KC_O,   KC_P,     KC_BSPC,
-      TAB_NAV, HRM_A, HRM_S,  HRM_D,    HRM_F,   KC_G,                                               KC_H,    HRM_J,    HRM_K,   HRM_L,  HRM_SCLN, ES_QUOT,
-      KC_LSFT, KC_Z,  KC_X,   KC_C,     KC_V,    KC_B,    XXXXXXX, OSK_JUMP,     OSK_JUMP, XXXXXXX,  KC_N,    KC_M,     KC_COMM, KC_DOT, KC_SLSH,  KC_RSFT,
-                              KC_LCTRL, KC_LALT, KC_LGUI, ML_LO,   KC_ENT,       KC_ENT,   SPC_HIG,  KC_ENT,  MO(_NAV), KC_RALT
+      KC_ESC,  KC_Q,  KC_W,   KC_E,     KC_R,    KC_T,                                               KC_Y,     KC_U,     KC_I,    KC_O,   KC_P,     KC_BSPC,
+      TAB_NAV, HRM_A, HRM_S,  HRM_D,    HRM_F,   KC_G,                                               KC_H,     HRM_J,    HRM_K,   HRM_L,  HRM_SCLN, ES_QUOT,
+      KC_LSFT, KC_Z,  KC_X,   KC_C,     KC_V,    KC_B,    XXXXXXX, OSK_JUMP,     OSK_JUMP, XXXXXXX,  KC_N,     KC_M,     KC_COMM, KC_DOT, KC_SLSH,  KC_RSFT,
+                              KC_LCTRL, KC_LALT, KC_LGUI, ML_LO,   KC_ENT,       KC_ENT,   SPC_HIG,  CTRL_HIG, MO(_NAV), KC_RALT
     ),
 
 
