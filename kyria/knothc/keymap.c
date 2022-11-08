@@ -214,26 +214,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 enum combo_events {
     CAPS_COMBO,
-    ENTER_COMBO,
-    BSP_COMBO,
-    TAB_COMBO,
-    DEL_COMBO,
     COMBO_LENGTH
 };
 uint16_t COMBO_LEN = COMBO_LENGTH;
 
 const uint16_t PROGMEM caps_combo[] = {HRM_F, HRM_J, COMBO_END};
-const uint16_t PROGMEM enter_combo[] = {KC_I, KC_O, COMBO_END};
-const uint16_t PROGMEM bsp_combo[] = {KC_U, KC_I, COMBO_END};
-const uint16_t PROGMEM tab_combo[] = {KC_W, KC_E, COMBO_END};
-const uint16_t PROGMEM del_combo[] = {KC_E, KC_R, COMBO_END};
 
 combo_t key_combos[] = {
     [CAPS_COMBO] = COMBO_ACTION(caps_combo),
-    [ENTER_COMBO] = COMBO(enter_combo, KC_ENT),
-    [BSP_COMBO] = COMBO(bsp_combo, KC_BSPC),
-    [TAB_COMBO] = COMBO(tab_combo, KC_TAB),
-    [DEL_COMBO] = COMBO(del_combo, KC_DEL),
 };
 
 
@@ -277,29 +265,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     return true;
 };
 
-/*
-const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) {
-  switch(id) {
-    case FWD_DEL_WORD: {
-        if (record->event.pressed) {
-            //SEND_STRING(SS_DOWN(KC_K)SS_DOWN(KC_DEL));
-            //SEND_STRING("ASDF!!!");
-            //  return false;
-            return MACRO(D(LSFT), D(LALT), T(RIGHT), T(DEL), U(LSFT), U(LALT), END);
-        }
-    }
-
-    case BCK_DEL_WORD: {
-      if (record->event.pressed) {
-          //SEND_STRING(LSA(KC_RIGHT) SS_DOWN(KC_DEL));
-          SEND_STRING("ASDF!!!");
-          return false;
-      }
-    }
-  }
-  return MACRO_NONE;
-};
-*/
 
 #ifdef OLED_DRIVER_ENABLE
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
@@ -373,25 +338,3 @@ bool oled_task_user(void) {
 }
 #endif
 
-//#ifdef ENCODER_ENABLE
-//bool encoder_update_user(uint8_t index, bool clockwise) {
-//    if (index == 0) {
-//        // Volume control
-//        if (clockwise) {
-//            tap_code(KC_VOLU);
-//        } else {
-//            tap_code(KC_VOLD);
-//        }
-//    }
-//    else if (index == 1) {
-//        // Page up/Page down
-//        if (clockwise) {
-//            tap_code(KC_PGDN);
-//        } else {
-//            tap_code(KC_PGUP);
-//        }
-//    }
-//    return true;
-//}
-//
-//#endif
