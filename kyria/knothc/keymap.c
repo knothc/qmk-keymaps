@@ -109,7 +109,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      *                       `----------------------------------'  `----------------------------------'
      */
     [_LOWER] = LAYOUT(
-       _______, ES_AT,   _______,    _______, ES_EQL,  ES_PLUS,                                        ES_PIPE, ES_LCBR, ES_RCBR, ES_EQL,  KC_LBRC, KC_DEL,
+       _______, ES_AT,   ES_BSLS,    _______, ES_EQL,  ES_PLUS,                                        ES_PIPE, ES_LCBR, ES_RCBR, ES_EQL,  KC_LBRC, KC_DEL,
        _______, ES_EXLM, ES_DQUO,    ES_HASH, ES_DLR,  ES_PERC,                                        ES_AMPR, ES_LPRN, ES_RPRN, ES_SLSH, ES_QUES, KC_QUOT,
        _______, ES_LABK, S(ES_LABK), _______, ES_ASTR, ES_MINS, _______, _______,    _______, _______, ES_NOT,  ES_LBRC, ES_RBRC, ES_EXLM, ES_QUES, _______,
                                      _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______
@@ -156,8 +156,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     *                        `----------------------------------'  `----------------------------------'
     */
     [_NAV] = LAYOUT(
-      _______, _______, _______,    BCK_DEL_WORD,  FWD_DEL_WORD,   _______,                                         _______, LCMD(KC_LEFT), KC_UP,   LCMD(KC_RIGHT), KC_HOME, KC_DEL,
-      _______, KC_LSFT, KC_LSFT,    LALT(KC_LEFT), LALT(KC_RIGHT), _______,                                         _______, KC_LEFT,       KC_DOWN, KC_RIGHT,       KC_END,  _______,
+      _______, _______, _______,    BCK_DEL_WORD,  FWD_DEL_WORD,   _______,                                         _______, LCMD(KC_LEFT), KC_UP,   LCMD(KC_RIGHT), KC_PGUP, KC_DEL,
+      _______, KC_LSFT, KC_LSFT,    LALT(KC_LEFT), LALT(KC_RIGHT), _______,                                         _______, KC_LEFT,       KC_DOWN, KC_RIGHT,       KC_PGDN, _______,
       _______, _______, LCMD(KC_X), LCMD(KC_C),    LCMD(KC_V),     _______, _______, _______,     _______, _______, _______, GO_BACK,       _______, GO_FRWD,        _______, _______,
                                                  _______, _______, _______, _______, _______,     _______, _______, _______,       _______, _______
     ),
