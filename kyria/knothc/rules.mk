@@ -3,4 +3,5 @@ ENCODER_ENABLE = no       # Enables the use of one or more encoders
 RGBLIGHT_ENABLE = yes      # Enable keyboard RGB underglow
 COMBO_ENABLE = yes
 COMMAND_ENABLE = no
-SRC += caps_word.c
+CAPS_WORD_ENABLE = yes
+#SRC += caps_word.c
