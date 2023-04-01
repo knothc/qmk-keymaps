@@ -43,6 +43,7 @@
 enum layers {
 	_DEFAULT,
 	_HIGH,
+    _COMMON,
 	_MODS,
 	_NAV,
 	_LOW,
