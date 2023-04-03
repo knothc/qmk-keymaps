@@ -6,13 +6,19 @@ QMK_DIR = "#{__dir__}/../qmk_firmware"
 USERNAME = 'knothc'
 
 KEYBOARDS = {
-  'crkbd' => 'crkbd',
-  'kyria' => 'splitkb/kyria',
-  'sweep' => 'ferris'
-}
+  'crkbd' => ['crkbd'],
+  'kyria' => ['splitkb/kyria'],
+  'sweep' => ['ferris', 'splitkb/aurora/sweep']   
+}  
 
-def keymap_path(keyboard)
-  File.expand_path("#{QMK_DIR}/keyboards/#{KEYBOARDS[keyboard]}/keymaps/#{USERNAME}")
+def keymap_paths(keyboard)
+  paths = Array[]
+  targets = KEYBOARDS[keyboard]
+  targets.each do |target| 
+    path = File.expand_path("#{QMK_DIR}/keyboards/#{target}/keymaps/#{USERNAME}")
+    paths.push(path)
+  end
+  paths
 end
 
 task default: :install
@@ -21,14 +27,17 @@ desc 'Setup symbolic links to keymap files for each keyboard'
 task :install do
   puts "\033[34m[INFO]\033[0m Adding symlinks to keymap files..."
   KEYBOARDS.each_key do |keyboard|
-    target_path = keymap_path(keyboard)
-    puts "\033[34m[INFO]\033[0m Adding symlinks for #{keyboard} configuration"
-    if File.exists?(target_path)
-      puts "\033[33m[WARN]\033[0m Symlink already exists, bailing out..."
-      next
+    targets = keymap_paths(keyboard)
+    targets.each do |target_path|
+      puts "\033[34m[INFO]\033[0m Adding symlinks for #{keyboard} configuration"
+      puts "  [path: #{target_path}]"
+      if File.exists?(target_path)
+        puts "\033[33m[WARN]\033[0m Symlink already exists, bailing out..."
+        next
+      end
+      FileUtils.ln_s(File.expand_path("#{keyboard}/#{USERNAME}"), target_path, verbose: true) unless File.exist?(target_path)
+      puts "\033[32m[OK]\033[0m Symlink to #{keyboard} keymap files setup"
     end
-    FileUtils.ln_s(File.expand_path("#{keyboard}/#{USERNAME}"), target_path, verbose: true) unless File.exist?(target_path)
-    puts "\033[32m[OK]\033[0m Symlink to #{keyboard} keymap files setup"
   end
   puts "\033[32m[OK]\033[0m Finished adding symlinks to keymap files"
 end
@@ -38,14 +47,17 @@ desc 'Remove symbolic links to keymap files for each keyboard'
 task :uninstall do
   puts "\033[34m[INFO]\033[0m Removing symlinks to keymap files..."
   KEYBOARDS.each_key do |keyboard|
-    target_path = keymap_path(keyboard)
-    puts "\033[34m[INFO]\033[0m Removing symlink for #{keyboard} configuration"
-    if File.exists?(target_path) == false
-      puts "\033[33m[INFO]\033[0m File not found, bailing out..."
-      next
+    targets = keymap_paths(keyboard)
+    targets.each do |target_path|
+      puts "\033[34m[INFO]\033[0m Removing symlink for #{keyboard} configuration"
+      puts "  [path: #{target_path}]"
+      if File.exists?(target_path) == false
+        puts "\033[33m[INFO]\033[0m File not found, bailing out..."
+        next
+      end
+      FileUtils.rm_r(target_path, verbose: true)
+      puts "\033[32m[OK]\033[0m Symlink to #{keyboard} keymap files removed"
     end
-    FileUtils.rm_r(target_path, verbose: true)
-    puts "\033[32m[OK]\033[0m Symlink to #{keyboard} keymap files removed"
   end
   puts "\033[32m[OK]\033[0m All symbolic links removed"
 end
