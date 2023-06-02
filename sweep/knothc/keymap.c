@@ -2,7 +2,7 @@
 
 // Callum oneshot mods and swapper
 // https://github.com/callum-oakley/qmk_firmware/blob/master/users/callum
-#include "caps_word.h"
+// #include "caps_word.h"
 #include "oneshot.h"
 #include "swapper.h"
 #include "keycodes.h"
@@ -132,7 +132,7 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
   switch(combo_index) {
     case CAPS_COMBO_Q:
       if (pressed) {
-        caps_word_set(true);  // Activate Caps Word!
+        caps_word_on();  // Activate Caps Word!
       }
       break;
 
