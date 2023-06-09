@@ -18,6 +18,8 @@
 #define KCA_NAV LT(_NAV, KC_A)
 #define HI_SPC  LT(_HIGH, KC_SPC)
 
+#define CTRL_HIG LM(_HIGH, MOD_LCTL)
+
 #define LWORD  A(KC_LEFT)
 #define RWORD  A(KC_RIGHT)
 #define LLINE  G(KC_LEFT)
@@ -30,16 +32,16 @@
 
 // TODO: add or not add?
 // Left-hand home row mods
-#define HRM_A  LSFT_T(KC_A)
-#define HRM_S  CTL_T(KC_S)
-#define HRM_D  ALT_T(KC_D)
-#define HRM_F  CMD_T(KC_F)
+#define HRM_Z  LSFT_T(KC_Z)
+#define HRM_X  CTL_T(KC_X)
+#define HRM_C  ALT_T(KC_C)
+#define HRM_V  CMD_T(KC_V)
 
 // Right-hand home row mods
-#define HRM_J    RCMD_T(KC_J)
-#define HRM_K    ALT_T(KC_K)
-#define HRM_L    CTL_T(KC_L)
-#define HRM_SCLN LSFT_T(KC_SCLN)
+#define HRM_M     CMD_T(KC_M)
+#define HRM_COMM  ALT_T(KC_COMM)
+#define HRM_DOT   CTL_T(KC_DOT)
+#define HRM_SLSH  LSFT_T(KC_SLSH)
 
 #define W_FULL  LCAG(KC_O)
 #define W_NEXT  LCAG(KC_P)
@@ -53,10 +55,10 @@
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_DEFAULT] = LAYOUT_split_3x5_2(
-		KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,            KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,
-		KCA_NAV, KC_S,    KC_D,    KC_F,    KC_G,            KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN,
-		SHFT_Z,  KC_X,    KC_C,    KC_V,    KC_B,            KC_N,    KC_M,    KC_COMM, KC_DOT,  SHFT_SLSH,
-								   KC_LGUI, ML_LO,           HI_SPC,  SYM
+		KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,            KC_Y,    KC_U,    KC_I,     KC_O,     KC_P,
+		KCA_NAV, KC_S,    KC_D,    KC_F,    KC_G,            KC_H,    KC_J,    KC_K,     KC_L,     KC_SCLN,
+		HRM_Z,   HRM_X,   HRM_C,   HRM_V,   KC_B,            KC_N,    HRM_M,   HRM_COMM, HRM_DOT,  HRM_SLSH,
+								   KC_LGUI, ML_LO,           HI_SPC,  CTRL_HIG
     ),
 
     // [_HIGH] = LAYOUT_split_3x5_2(  // "RAISE"
@@ -82,12 +84,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_NAV] = LAYOUT_split_3x5_2( // NAVIGATION
 		XXXXXXX, XXXXXXX, BCK_DEL_WORD, FWD_DEL_WORD, XXXXXXX,      XXXXXXX, LLINE,   KC_UP,   RLINE,    KC_HOME,
 		XXXXXXX, KC_LSFT, LWORD,        RWORD,        XXXXXXX,      XXXXXXX, KC_LEFT, KC_DOWN, KC_RIGHT, KC_END,
-		XXXXXXX, XXXXXXX, XXXXXXX,      XXXXXXX,      XXXXXXX,      XXXXXXX, GO_BACK, XXXXXXX, GO_FRWD,  XXXXXXX,
+		XXXXXXX, XXXXXXX, XXXXXXX,      XXXXXXX,      XXXXXXX,      XXXXXXX, GO_BACK, XXXXXXX, GO_FRWD,  S(KC_SLSH),
 										_______,      _______,      _______, _______
     ),
 
     [_LOW] = LAYOUT_split_3x5_2(  // "LOWER"
-  	    G(KC_Q), ES_QUOT,  KC_LBRC,    KC_QUOT, ES_PLUS,     ES_PIPE,  ES_LCBR, ES_RCBR, ES_EQL,  KC_BSPC,
+  	    ES_AT,   ES_QUOT,  KC_LBRC,    KC_QUOT, ES_PLUS,     ES_PIPE,  ES_LCBR, ES_RCBR, ES_EQL,  KC_BSPC,
   	    SW_APP,  ES_DQUO,  ES_HASH,    ES_DLR,  ES_PERC,     ES_AMPR,  ES_LPRN, ES_RPRN, ES_SLSH, KC_ENT,
   	    ES_AT,   KC_GRV,   S(KC_GRV),  ES_ASTR, ES_MINS,     ES_NOT,   ES_LBRC, ES_RBRC, ES_EXLM, ES_QUES,
   									  _______,  _______,     _______,  _______
