@@ -53,6 +53,22 @@
 #define GO_BACK G(C(KC_LEFT))
 #define GO_FRWD G(C(KC_RIGHT))
 
+enum keycodes {
+	// Custom oneshot mod implementation with no timers.
+	OS_SHFT = SAFE_RANGE,
+	OS_CTRL,
+	OS_ALT,
+	OS_CMD,
+
+	NUMWORD,
+
+	CLEAR,
+
+	SW_APP,
+	FWD_DEL_WORD,
+	BCK_DEL_WORD
+};
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_DEFAULT] = LAYOUT_split_3x5_2(
 		KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,            KC_Y,    KC_U,    KC_I,     KC_O,     KC_P,

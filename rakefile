@@ -8,7 +8,8 @@ USERNAME = 'knothc'
 KEYBOARDS = {
   'crkbd' => ['crkbd'],
   'kyria' => ['splitkb/kyria'],
-  'sweep' => ['ferris', 'splitkb/aurora/sweep']   
+  'sweep' => ['ferris', 'splitkb/aurora/sweep'],
+  'tbkmini' => ['bastardkb/tbkmini']   
 }  
 
 def keymap_paths(keyboard)

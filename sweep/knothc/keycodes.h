@@ -48,19 +48,3 @@ enum layers {
 	_LOW,
 	_FUN,
 };
-
-enum keycodes {
-	// Custom oneshot mod implementation with no timers.
-	OS_SHFT = SAFE_RANGE,
-	OS_CTRL,
-	OS_ALT,
-	OS_CMD,
-
-	NUMWORD,
-
-	CLEAR,
-
-	SW_APP,
-	FWD_DEL_WORD,
-	BCK_DEL_WORD
-};
