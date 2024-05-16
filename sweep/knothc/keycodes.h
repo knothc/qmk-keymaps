@@ -3,7 +3,6 @@
 #include QMK_KEYBOARD_H
 
 #include "quantum.h"
-#include "oneshot.h"
 
 // Layer keys
 #define NUM OSL(_HIGH)
