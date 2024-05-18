@@ -9,14 +9,16 @@ KEYBOARDS = {
   'crkbd' => ['crkbd'],
   'kyria' => ['splitkb/kyria'],
   'sweep' => ['ferris', 'splitkb/aurora/sweep'],
-  'tbkmini' => ['bastardkb/tbkmini']   
-}  
+  'tbkmini' => ['bastardkb/tbkmini'],
+  'chocofi' => ['crkbd']
+}
 
 def keymap_paths(keyboard)
   paths = Array[]
   targets = KEYBOARDS[keyboard]
-  targets.each do |target| 
-    path = File.expand_path("#{QMK_DIR}/keyboards/#{target}/keymaps/#{USERNAME}")
+  targets.each do |target|
+    keymap_name = keyboard == 'chocofi' ? "#{USERNAME}-#{keyboard}" : USERNAME
+    path = File.expand_path("#{QMK_DIR}/keyboards/#{target}/keymaps/#{keymap_name}")
     paths.push(path)
   end
   paths
