@@ -70,7 +70,7 @@ enum keycodes {
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    [_DEFAULT] = LAYOUT_split_3x5_2(
+    [_DEFAULT] = LAYOUT_split_3x5_3(
 		KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,            KC_Y,    KC_U,     KC_I,     KC_O,     KC_P,
 		KCA_NAV, KC_S,    KC_D,    KC_F,    KC_G,            KC_H,    KC_J,     KC_K,     KC_L,     KC_SCLN,
 		HRM_Z,   HRM_X,   HRM_C,   HRM_V,   KC_B,            KC_N,    HRM_M,    HRM_COMM, HRM_DOT,  HRM_SLSH,
@@ -83,28 +83,28 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	// 	QTERM,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,       KC_MUTE, KC_1, KC_2, KC_3, TMUXP,
     //                               _______, _______,       _______,  _______
     // ),
-    [_HIGH] = LAYOUT_split_3x6_3(  // "RAISE"
+    [_HIGH] = LAYOUT_split_3x5_3(  // "RAISE"
 		KC_ESC, KC_MPRV, KC_MPLY, KC_MNXT, XXXXXXX,       XXXXXXX, KC_VOLD, KC_VOLU, KC_MUTE, KC_DEL,
 		KC_1,   KC_2,    KC_3,    KC_4,    KC_5,          KC_6,    KC_7,    KC_8,    KC_9,    KC_0,
 		QTERM,  OSM_ACG, XXXXXXX, ALFRED,  XXXXXXX,       XXXXXXX, OSM_AC, XXXXXXX, XXXXXXX, TMUXP,
                          _______, _______, _______,       _______, _______, _______
     ),
 
-    [_MODS] = LAYOUT_split_3x6_3( // ONE SHOT MODS
+    [_MODS] = LAYOUT_split_3x5_3( // ONE SHOT MODS
 		XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
 		OS_SHFT, OS_CTRL, OS_ALT,  OS_CMD,  XXXXXXX,     XXXXXXX, OS_CMD,  OS_ALT,  OS_CTRL, OS_SHFT,
 		XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
 		                  _______, KC_TRNS, KC_TRNS,     KC_TRNS, KC_TRNS, _______
     ),
 
-    [_NAV] = LAYOUT_split_3x6_3( // NAVIGATION
+    [_NAV] = LAYOUT_split_3x5_3( // NAVIGATION
 		XXXXXXX, XXXXXXX, BCK_DEL_WORD, FWD_DEL_WORD, XXXXXXX,      XXXXXXX, LLINE,   KC_UP,   RLINE,    KC_HOME,
 		XXXXXXX, KC_LSFT, LWORD,        RWORD,        XXXXXXX,      XXXXXXX, KC_LEFT, KC_DOWN, KC_RIGHT, KC_END,
 		XXXXXXX, XXXXXXX, XXXXXXX,      XXXXXXX,      XXXXXXX,      XXXXXXX, GO_BACK, XXXXXXX, GO_FRWD,  S(KC_SLSH),
 						  _______,  	_______,      _______,      _______, _______, _______
     ),
 
-    [_LOW] = LAYOUT_split_3x6_3(  // "LOWER"
+    [_LOW] = LAYOUT_split_3x5_3(  // "LOWER"
   	    ES_AT,   ES_QUOT,  KC_LBRC,    KC_QUOT, ES_PLUS,     ES_PIPE,  ES_LCBR, ES_RCBR, ES_EQL,  KC_BSPC,
   	    SW_APP,  ES_DQUO,  ES_HASH,    ES_DLR,  ES_PERC,     ES_AMPR,  ES_LPRN, ES_RPRN, ES_SLSH, KC_ENT,
   	    ES_AT,   KC_GRV,   S(KC_GRV),  ES_ASTR, ES_MINS,     ES_NOT,   ES_LBRC, ES_RBRC, ES_EXLM, ES_QUES,
