@@ -1,3 +1,5 @@
+// Chocofi 🍫🐶
+
 #include QMK_KEYBOARD_H
 
 // Callum oneshot mods and swapper
@@ -30,18 +32,29 @@
 #define OSM_AC  OSM(MOD_LCTL|MOD_LALT)
 #define OSM_ACG OSM(MOD_LCTL|MOD_LALT|MOD_LGUI)
 
-// TODO: add or not add?
-// Left-hand home row mods
+// Left-hand bottom-row-mods
 #define HRM_Z  LSFT_T(KC_Z)
 #define HRM_X  CTL_T(KC_X)
 #define HRM_C  ALT_T(KC_C)
 #define HRM_V  CMD_T(KC_V)
 
-// Right-hand home row mods
+// Left-hand home row mods
+#define HRM_A  LSFT_T(KC_A)
+#define HRM_S  CTL_T(KC_S)
+#define HRM_D  ALT_T(KC_D)
+#define HRM_F  CMD_T(KC_F)
+
+// Right-hand bottom-row-mods
 #define HRM_M     CMD_T(KC_M)
 #define HRM_COMM  ALT_T(KC_COMM)
 #define HRM_DOT   CTL_T(KC_DOT)
 #define HRM_SLSH  LSFT_T(KC_SLSH)
+
+// Right-hand home row mods
+#define HRM_J    RCMD_T(KC_J)
+#define HRM_K    ALT_T(KC_K)
+#define HRM_L    CTL_T(KC_L)
+#define HRM_SCLN LSFT_T(KC_SCLN)
 
 #define W_FULL  LCAG(KC_O)
 #define W_NEXT  LCAG(KC_P)
@@ -59,34 +72,26 @@ enum keycodes {
 	OS_CTRL,
 	OS_ALT,
 	OS_CMD,
-
 	NUMWORD,
-
 	CLEAR,
-
 	SW_APP,
 	FWD_DEL_WORD,
 	BCK_DEL_WORD
 };
+// HRM_SCLN, HRM_SLSH
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_DEFAULT] = LAYOUT_split_3x5_3(
 		KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,            KC_Y,    KC_U,     KC_I,     KC_O,     KC_P,
-		KCA_NAV, KC_S,    KC_D,    KC_F,    KC_G,            KC_H,    KC_J,     KC_K,     KC_L,     KC_SCLN,
-		HRM_Z,   HRM_X,   HRM_C,   HRM_V,   KC_B,            KC_N,    HRM_M,    HRM_COMM, HRM_DOT,  HRM_SLSH,
-						  _______,  KC_LGUI, ML_LO,          HI_SPC,  CTRL_HIG, _______
-    ),
+		KCA_NAV, HRM_S,   HRM_D,   HRM_F,   KC_G,            KC_H,    HRM_J,    HRM_K,    HRM_L,    KC_BSPC,
+        HRM_Z,   KC_X,    KC_C,    KC_V,    KC_B,            KC_N,    KC_M,     KC_COMM,  KC_DOT,   HRM_SLSH,
+						  KC_LSFT, KC_LGUI, ML_LO,           HI_SPC,  CTRL_HIG, OSM_AC
+    ), 
 
-    // [_HIGH] = LAYOUT_split_3x5_2(  // "RAISE"
-	// 	KC_ESC, KC_MPRV, KC_MPLY, KC_MNXT, XXXXXXX,       KC_VOLU, KC_7, KC_8, KC_9, KC_DEL,
-	// 	KC_TAB, ALFRED,  OSM_ACG, OSM_AC,  XXXXXXX,       KC_VOLD, KC_4, KC_5, KC_6, KC_0,
-	// 	QTERM,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,       KC_MUTE, KC_1, KC_2, KC_3, TMUXP,
-    //                               _______, _______,       _______,  _______
-    // ),
     [_HIGH] = LAYOUT_split_3x5_3(  // "RAISE"
-		KC_ESC, KC_MPRV, KC_MPLY, KC_MNXT, XXXXXXX,       XXXXXXX, KC_VOLD, KC_VOLU, KC_MUTE, KC_DEL,
-		KC_1,   KC_2,    KC_3,    KC_4,    KC_5,          KC_6,    KC_7,    KC_8,    KC_9,    KC_0,
-		QTERM,  OSM_ACG, XXXXXXX, ALFRED,  XXXXXXX,       XXXXXXX, OSM_AC, XXXXXXX, XXXXXXX, TMUXP,
+		KC_ESC, KC_MPRV, KC_MPLY, KC_MNXT, XXXXXXX,       XXXXXXX, KC_VOLD, KC_VOLU, HRM_SLSH, KC_DEL,
+		KC_1,   KC_2,    KC_3,    KC_4,    KC_5,          KC_6,    KC_7,    KC_8,    KC_9,     KC_0,
+		QTERM,  OSM_ACG, XXXXXXX, ALFRED,  XXXXXXX,       XXXXXXX, OSM_AC,  SW_APP,  HRM_SLSH, HRM_SCLN,
                          _______, _______, _______,       _______, _______, _______
     ),
 
@@ -98,24 +103,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     [_NAV] = LAYOUT_split_3x5_3( // NAVIGATION
-		XXXXXXX, XXXXXXX, BCK_DEL_WORD, FWD_DEL_WORD, XXXXXXX,      XXXXXXX, LLINE,   KC_UP,   RLINE,    KC_HOME,
-		XXXXXXX, KC_LSFT, LWORD,        RWORD,        XXXXXXX,      XXXXXXX, KC_LEFT, KC_DOWN, KC_RIGHT, KC_END,
+		XXXXXXX, XXXXXXX, BCK_DEL_WORD, FWD_DEL_WORD, XXXXXXX,      XXXXXXX, LLINE,   KC_UP,   RLINE,    KC_DEL,
+		XXXXXXX, KC_LSFT, LWORD,        RWORD,        XXXXXXX,      XXXXXXX, KC_LEFT, KC_DOWN, KC_RIGHT, KC_ENT,
 		XXXXXXX, XXXXXXX, XXXXXXX,      XXXXXXX,      XXXXXXX,      XXXXXXX, GO_BACK, XXXXXXX, GO_FRWD,  S(KC_SLSH),
 						  _______,  	_______,      _______,      _______, _______, _______
     ),
 
     [_LOW] = LAYOUT_split_3x5_3(  // "LOWER"
   	    ES_AT,   ES_QUOT,  KC_LBRC,    KC_QUOT, ES_PLUS,     ES_PIPE,  ES_LCBR, ES_RCBR, ES_EQL,  KC_BSPC,
-  	    SW_APP,  ES_DQUO,  ES_HASH,    ES_DLR,  ES_PERC,     ES_AMPR,  ES_LPRN, ES_RPRN, ES_SLSH, KC_ENT,
-  	    ES_AT,   KC_GRV,   S(KC_GRV),  ES_ASTR, ES_MINS,     ES_NOT,   ES_LBRC, ES_RBRC, ES_EXLM, ES_QUES,
+  	    ES_EXLM, ES_DQUO,  ES_HASH,    ES_DLR,  ES_PERC,     ES_AMPR,  ES_LPRN, ES_RPRN, ES_SLSH, ES_QUES,
+  	    ES_LABK, KC_GRV,   S(KC_GRV),  ES_ASTR, ES_MINS,     ES_NOT,   ES_LBRC, ES_RBRC, ES_EXLM, KC_ENT,
   						   _______,    _______, _______,     _______,  _______, _______
   ),
 
 
     [_FUN] = LAYOUT_split_3x5_3(
 		KC_NO,   KC_NO,    KC_NO,    KC_NO,    KC_NO,        KC_NO,   KC_NO,   W_UP,    W_FULL,  W_NEXT,
- 		KC_NO,   KC_NO,    KC_NO,    KC_NO,    KC_NO,        KC_NO,   W_LEFT,  W_DOWN,  W_RIGHT, KC_NO, 
-  		KC_NO,   KC_NO,    KC_NO,    KC_NO,    KC_NO,        KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO, 
+        KC_NO,   KC_NO,    KC_NO,    KC_NO,    KC_NO,        KC_NO,   W_LEFT,  W_DOWN,  W_RIGHT, KC_NO, 
+        KC_NO,   KC_NO,    KC_NO,    KC_NO,    KC_NO,        KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO, 
 		                   _______,  KC_TRNS,  KC_TRNS,      KC_TRNS, KC_TRNS, _______
     ),
 };
@@ -127,7 +132,7 @@ enum combo_events {
   TAB_COMBO_Q,
   BSP_COMBO_Q,
   DEL_COMBO_Q,
-  CTRLC_COMBO_Q,
+  //CTRLC_COMBO_Q,
   ESC_COMBO_Q,
   COMBO_LENGTH
 };
@@ -135,13 +140,13 @@ enum combo_events {
 uint16_t COMBO_LEN = COMBO_LENGTH;
 // qwerty combos
 const uint16_t PROGMEM caps_combo_q[] = {KC_F, KC_J, COMBO_END};
-const uint16_t PROGMEM enter_combo_q[] = {KC_J, KC_K, COMBO_END};
-const uint16_t PROGMEM tab_combo_q[] = {KC_F, KC_D, COMBO_END};
-const uint16_t PROGMEM bsp_combo_q[] = {KC_F, KC_S, COMBO_END};
-const uint16_t PROGMEM del_combo_q[] = {KC_J, KC_L, COMBO_END};
+const uint16_t PROGMEM enter_combo_q[] = {KC_U, KC_I, COMBO_END};
+const uint16_t PROGMEM tab_combo_q[] = {KC_E, KC_R, COMBO_END};
+const uint16_t PROGMEM bsp_combo_q[] = {KC_W, KC_R, COMBO_END};
+const uint16_t PROGMEM del_combo_q[] = {KC_U, KC_O, COMBO_END};
 // Ctrl-c combo mostly for Emacs
-const uint16_t PROGMEM ctrlc_combo_q[] = {KC_J, KC_K, KC_L, COMBO_END};  // TODO: Update to something useful
-const uint16_t PROGMEM esc_combo_q[] = {KC_F, KC_D, KC_S, COMBO_END};
+//const uint16_t PROGMEM ctrlc_combo_q[] = {KC_J, KC_K, KC_L, COMBO_END};  // TODO: Update to something useful
+const uint16_t PROGMEM esc_combo_q[] = {KC_W, KC_E, KC_R, COMBO_END};
 
 combo_t key_combos[] = {
   [CAPS_COMBO_Q] = COMBO_ACTION(caps_combo_q),
@@ -149,7 +154,7 @@ combo_t key_combos[] = {
   [TAB_COMBO_Q] = COMBO(tab_combo_q, KC_TAB),
   [BSP_COMBO_Q] = COMBO(bsp_combo_q, KC_BSPC),
   [DEL_COMBO_Q] = COMBO(del_combo_q, KC_DEL),
-  [CTRLC_COMBO_Q] = COMBO(ctrlc_combo_q, LCTL(KC_C)),   // TODO: Update to something useful
+//[CTRLC_COMBO_Q] = COMBO(ctrlc_combo_q, LCTL(KC_C)),   // TODO: Update to something useful
   [ESC_COMBO_Q] = COMBO(esc_combo_q, KC_ESC),
 };
 
