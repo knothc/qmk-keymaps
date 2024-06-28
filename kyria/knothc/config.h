@@ -20,7 +20,7 @@
 #define TAPPING_TERM 200
 
 // Prevent normal rollover on alphas from accidentally triggering mods.
-#define IGNORE_MOD_TAP_INTERRUPT
+// #define IGNORE_MOD_TAP_INTERRUPT  // it's now the default beehavior for mod-tap keys
 
 // Enable rapid switch from tap to hold, disables double tap hold auto-repeat.
 #define TAPPING_FORCE_HOLD
@@ -37,7 +37,7 @@
   #define RGBLIGHT_HUE_STEP 8
   #define RGBLIGHT_SAT_STEP 8
   #define RGBLIGHT_VAL_STEP 8
-  #define RGBLIGHT_LIMIT_VAL 150
+//  #define RGBLIGHT_LIMIT_VAL 150
 #endif
 
 // If you are using an Elite C rev3 on the slave side, uncomment the lines below:
