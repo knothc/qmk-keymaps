@@ -51,12 +51,16 @@ enum custom_keycodes {
 #define ENT_HIG LT(_RAISE, KC_ENT)
 #define SPC_HIG LT(_RAISE, KC_SPC)
 #define TAB_NAV LT(_NAV, KC_TAB)
+#define TAB_LOW LT(_LOWER, KC_TAB)
 #define ENT_NAV LT(_NAV, KC_ENT)
 #define ENT_LOW LT(_LOWER, KC_ENT)
 #define BSPC_LOW LT(_LOWER, KC_BSPC)
 
 // one-shot-key definitions
 #define OSK_CA OSM(MOD_LCTL|MOD_LALT)  // I use this combinations with BetterTouchTool shorcuts to jump/open a specific application
+
+// For easy desktop/space switching
+#define CTRL_HIG LM(_RAISE, MOD_LCTL)
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -68,18 +72,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_RSFT,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_LALT, KC_LGUI, ENT_LOW,    SPC_HIG,MO(_NAV),  OSK_CA
-                                      //`--------------------------'  `--------------------------'
+                                          CTRL_HIG, KC_LGUI, TAB_LOW,    SPC_HIG,  KC_ENT,  OSK_CA
+                                       //`--------------------------'  `--------------------------'
 
   ),
 
   [_LOWER] = LAYOUT_split_3x6_3(
   //,-------------------------------------------------------.                    ,-----------------------------------------------------.
-      XXXXXXX,   ES_AT,   XXXXXXX, XXXXXXX,  ES_EQL, ES_PLUS,                      ES_PIPE, ES_LCBR, ES_RCBR,  ES_EQL, KC_LBRC,  KC_DEL,
+      XXXXXXX,   ES_AT,   ES_BSLS, XXXXXXX,  ES_EQL, ES_PLUS,                      ES_PIPE, ES_LCBR, ES_RCBR,  ES_EQL, KC_LBRC,  KC_DEL,
   //|--------+--------+----------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       XXXXXXX, ES_EXLM,   ES_DQUO, ES_HASH,  ES_DLR, ES_PERC,                      ES_AMPR, ES_LPRN, ES_RPRN, ES_SLSH, ES_QUES, KC_QUOT,
   //|--------+--------+----------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      XXXXXXX, ES_LABK,S(ES_LABK), XXXXXXX, ES_ASTR, ES_MINS,                       ES_NOT, ES_LBRC, ES_RBRC, XXXXXXX, XXXXXXX, KC_TILD,
+      XXXXXXX, ES_LABK,S(ES_LABK), XXXXXXX, ES_ASTR, ES_MINS,                       ES_NOT, ES_LBRC, ES_RBRC, ES_EXLM, ES_QUES, KC_TILD,
   //|--------+--------+----------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                             _______, _______, _______,    _______, _______, _______
                                         //`--------------------------'  `--------------------------'
@@ -144,22 +148,22 @@ void oled_render_layer_state(void) {
     oled_write_P(PSTR("Layer: "), false);
     switch (layer_state) {
         case L_BASE:
-            oled_write_ln_P(PSTR("default"), false);
+            oled_write_ln_P(PSTR("DEFAULT"), false);
             break;
         case L_LOWER:
-            oled_write_ln_P(PSTR("lower"), false);
+            oled_write_ln_P(PSTR("LOW"), false);
             break;
         case L_RAISE:
-            oled_write_ln_P(PSTR("raise"), false);
+            oled_write_ln_P(PSTR("HIGH"), false);
             break;
         case L_NAV:
-            oled_write_ln_P(PSTR("nav"), false);
+            oled_write_ln_P(PSTR("NAVI"), false);
             break;
         case L_ADJUST:
         case L_ADJUST|L_LOWER:
         case L_ADJUST|L_RAISE:
         case L_ADJUST|L_LOWER|L_RAISE:
-            oled_write_ln_P(PSTR("Adjust"), false);
+            oled_write_ln_P(PSTR("SETTINGS"), false);
             break;
     }
 }
