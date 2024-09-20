@@ -18,6 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include QMK_KEYBOARD_H
 #include "keymap_spanish.h"
+#include "caps_word.h"
 #include <stdio.h>
 
 // Layer definitions
@@ -230,6 +231,37 @@ bool oled_task_user(void) {
     }
     return false;
 }
+ 
+// enum combo_events {
+//     CAPS_COMBO,
+//     COMBO_LENGTH
+// };
+//
+//
+// uint16_t COMBO_LEN = COMBO_LENGTH;
+//
+//
+// const uint16_t PROGMEM caps_combo[] = {HRM_F, HRM_J, COMBO_END};
+//
+//
+// combo_t key_combos[] = {
+//     [CAPS_COMBO] = COMBO_ACTION(caps_combo),
+// };
+//
+//
+// void process_combo_event(uint16_t combo_index, bool pressed) {
+//   switch(combo_index) {
+//     case CAPS_COMBO:
+//       if (pressed) {
+//         //caps_word_set(true);  // Activate Caps Word!
+//         caps_word_on();
+//       }
+//       break;
+//
+//     // Other combos...
+//   }
+// }
+
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
