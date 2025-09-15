@@ -63,6 +63,9 @@ enum custom_keycodes {
 // For easy desktop/space switching
 #define CTRL_HIG LM(_RAISE, MOD_LCTL)
 
+// Convencience
+#define GO_BACK G(C(KC_LEFT))
+#define GO_FRWD G(C(KC_RIGHT))
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QWERTY] = LAYOUT_split_3x6_3(
@@ -73,7 +76,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_RSFT,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                           OSK_CA, KC_LGUI, TAB_LOW,    SPC_HIG,CTRL_HIG,  OSK_CA
+                                         CTRL_HIG, KC_LGUI, TAB_LOW,    SPC_HIG,  KC_ENT,  OSK_CA
                                        //`--------------------------'  `--------------------------'
 
   ),
@@ -86,7 +89,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+----------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       XXXXXXX, ES_LABK,S(ES_LABK), XXXXXXX, ES_ASTR, ES_MINS,                       ES_NOT, ES_LBRC, ES_RBRC, ES_EXLM, ES_QUES, KC_TILD,
   //|--------+--------+----------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                            _______, _______, _______,     KC_ENT, KC_BSPC,  KC_DEL
+                                            _______, _______, _______,   _______, KC_BSPC,  KC_DEL
                                         //`--------------------------'  `--------------------------'
   ),
 
@@ -108,7 +111,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------------+---------------+--------|                    |--------+--------------+--------+---------------+--------+--------|
       _______, KC_LSFT, KC_LSFT, LALT(KC_LEFT), LALT(KC_RIGHT), XXXXXXX,                      XXXXXXX,       KC_LEFT, KC_DOWN,       KC_RIGHT,  KC_END, XXXXXXX,
   //|--------+--------+--------+--------------+---------------+--------|                    |--------+--------------+--------+---------------+--------+--------|
-      XXXXXXX, XXXXXXX, XXXXXXX,       XXXXXXX,        XXXXXXX, XXXXXXX,                      XXXXXXX,       XXXXXXX, XXXXXXX,        XXXXXXX, XXXXXXX, XXXXXXX,
+      XXXXXXX, XXXXXXX, XXXXXXX,       XXXXXXX,        XXXXXXX, XXXXXXX,                      XXXXXXX,       GO_BACK, XXXXXXX,        GO_FRWD, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------------+---------------+--------+--------|  |--------+--------+--------------+--------+---------------+--------+--------|
                                                        _______, _______, _______,    _______, _______,       _______
                                             //`---------------------------------'  `--------------------------------'
