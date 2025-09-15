@@ -14,6 +14,8 @@
 #define SHFT_Z    LSFT_T(KC_Z)
 #define SHFT_SLSH RSFT_T(KC_SLSH)
 #define ALFRED    RCTL(KC_SPC)
+#define HRM_SCLN  LSFT_T(KC_SCLN)
+#define CMD_BSPC  CMD_T(KC_BSPC)
 
 #define ML_LO   LT(_LOW, KC_TAB)
 
@@ -82,17 +84,17 @@ enum keycodes {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_DEFAULT] = LAYOUT_split_3x5_3(
-		KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,            KC_Y,    KC_U,     KC_I,     KC_O,     KC_P,
-		KCA_NAV, HRM_S,   HRM_D,   HRM_F,   KC_G,            KC_H,    HRM_J,    HRM_K,    HRM_L,    KC_BSPC,
-        HRM_Z,   KC_X,    KC_C,    KC_V,    KC_B,            KC_N,    KC_M,     KC_COMM,  KC_DOT,   HRM_SLSH,
-						  KC_LSFT, KC_LGUI, ML_LO,           HI_SPC,  CTRL_HIG, OSM_AC
+	  KC_Q,   KC_W,    KC_E,     KC_R,    KC_T,            KC_Y,    KC_U,     KC_I,     KC_O,     KC_P,
+	  KCA_NAV,HRM_S,   HRM_D,    HRM_F,   KC_G,            KC_H,    HRM_J,    HRM_K,    HRM_L,    HRM_SCLN,
+    SHFT_Z, KC_X,    KC_C,     KC_V,    KC_B,            KC_N,    KC_M,     KC_COMM,  KC_DOT,   HRM_SLSH,
+		                 CTRL_HIG, CMD_BSPC,ML_LO,           HI_SPC,  KC_ENT,   OSM_AC
     ), 
 
     [_HIGH] = LAYOUT_split_3x5_3(  // "RAISE"
 		KC_ESC, KC_MPRV, KC_MPLY, KC_MNXT, XXXXXXX,       XXXXXXX, KC_VOLD, KC_VOLU, HRM_SLSH, KC_DEL,
 		KC_1,   KC_2,    KC_3,    KC_4,    KC_5,          KC_6,    KC_7,    KC_8,    KC_9,     KC_0,
 		QTERM,  OSM_ACG, XXXXXXX, ALFRED,  XXXXXXX,       XXXXXXX, OSM_AC,  SW_APP,  HRM_SLSH, HRM_SCLN,
-                         _______, _______, _______,       _______, _______, _______
+                     _______, _______, _______,       _______, _______, _______
     ),
 
     [_MODS] = LAYOUT_split_3x5_3( // ONE SHOT MODS
@@ -104,16 +106,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_NAV] = LAYOUT_split_3x5_3( // NAVIGATION
 		XXXXXXX, XXXXXXX, BCK_DEL_WORD, FWD_DEL_WORD, XXXXXXX,      XXXXXXX, LLINE,   KC_UP,   RLINE,    KC_DEL,
-		XXXXXXX, KC_LSFT, LWORD,        RWORD,        XXXXXXX,      XXXXXXX, KC_LEFT, KC_DOWN, KC_RIGHT, KC_ENT,
+		XXXXXXX, KC_LSFT, LWORD,        RWORD,        XXXXXXX,      XXXXXXX, KC_LEFT, KC_DOWN, KC_RIGHT, KC_BSPC,
 		XXXXXXX, XXXXXXX, XXXXXXX,      XXXXXXX,      XXXXXXX,      XXXXXXX, GO_BACK, XXXXXXX, GO_FRWD,  S(KC_SLSH),
-						  _______,  	_______,      _______,      _______, _______, _______
+		                  _______,      _______,      _______,      _______, _______, _______
     ),
 
     [_LOW] = LAYOUT_split_3x5_3(  // "LOWER"
   	    ES_AT,   ES_QUOT,  KC_LBRC,    KC_QUOT, ES_PLUS,     ES_PIPE,  ES_LCBR, ES_RCBR, ES_EQL,  KC_BSPC,
   	    ES_EXLM, ES_DQUO,  ES_HASH,    ES_DLR,  ES_PERC,     ES_AMPR,  ES_LPRN, ES_RPRN, ES_SLSH, ES_QUES,
   	    ES_LABK, KC_GRV,   S(KC_GRV),  ES_ASTR, ES_MINS,     ES_NOT,   ES_LBRC, ES_RBRC, ES_EXLM, KC_ENT,
-  						   _______,    _______, _______,     _______,  _______, _______
+  			                   _______,    _______, _______,     _______,   _______, _______
   ),
 
 
@@ -129,7 +131,7 @@ enum combo_events {
   // qwerty layer combos
   CAPS_COMBO_Q,
   ENTER_COMBO_Q,
-  TAB_COMBO_Q,
+  // TAB_COMBO_Q,
   BSP_COMBO_Q,
   DEL_COMBO_Q,
   //CTRLC_COMBO_Q,
@@ -141,7 +143,7 @@ uint16_t COMBO_LEN = COMBO_LENGTH;
 // qwerty combos
 const uint16_t PROGMEM caps_combo_q[] = {KC_F, KC_J, COMBO_END};
 const uint16_t PROGMEM enter_combo_q[] = {KC_U, KC_I, COMBO_END};
-const uint16_t PROGMEM tab_combo_q[] = {KC_E, KC_R, COMBO_END};
+// const uint16_t PROGMEM tab_combo_q[] = {KC_E, KC_R, COMBO_END};
 const uint16_t PROGMEM bsp_combo_q[] = {KC_W, KC_R, COMBO_END};
 const uint16_t PROGMEM del_combo_q[] = {KC_U, KC_O, COMBO_END};
 // Ctrl-c combo mostly for Emacs
@@ -151,7 +153,7 @@ const uint16_t PROGMEM esc_combo_q[] = {KC_W, KC_E, KC_R, COMBO_END};
 combo_t key_combos[] = {
   [CAPS_COMBO_Q] = COMBO_ACTION(caps_combo_q),
   [ENTER_COMBO_Q] = COMBO(enter_combo_q, KC_ENT),
-  [TAB_COMBO_Q] = COMBO(tab_combo_q, KC_TAB),
+  // [TAB_COMBO_Q] = COMBO(tab_combo_q, KC_TAB),
   [BSP_COMBO_Q] = COMBO(bsp_combo_q, KC_BSPC),
   [DEL_COMBO_Q] = COMBO(del_combo_q, KC_DEL),
 //[CTRLC_COMBO_Q] = COMBO(ctrlc_combo_q, LCTL(KC_C)),   // TODO: Update to something useful
