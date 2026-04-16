@@ -2,12 +2,14 @@
 
 require 'fileutils'
 
-QMK_DIR = "#{__dir__}/../qmk_firmware"
+QMK_DIR = "/Users/efrain.mejia/qmk_firmware"
+# QMK_DIR = "#{__dir__}/../qmk_firmware"
 USERNAME = 'knothc'
 
 KEYBOARDS = {
   'crkbd' => ['crkbd'],
   'kyria' => ['splitkb/kyria'],
+  'kyria-halcyon' => ['splitkb/halcyon/kyria'],
   'sweep' => ['ferris', 'splitkb/aurora/sweep'],
   'tbkmini' => ['bastardkb/tbkmini'],
   'chocofi' => ['crkbd']
@@ -38,6 +40,7 @@ task :install do
         puts "\033[33m[WARN]\033[0m Symlink already exists, bailing out..."
         next
       end
+      FileUtils.mkdir_p(File.dirname(target_path))
       FileUtils.ln_s(File.expand_path("#{keyboard}/#{USERNAME}"), target_path, verbose: true) unless File.exist?(target_path)
       puts "\033[32m[OK]\033[0m Symlink to #{keyboard} keymap files setup"
     end
